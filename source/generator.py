@@ -17,9 +17,12 @@ class QuestionGenerator():
         return [f"{a} * {b}", a*b]
     
     def genDiv(self):
-        a, b = 101, random.choice(self.num_range)
-        while (a > 100):
-            a = b * random.choice(self.num_range)
+        a, b = 101, random.choice(range(max(self.num_range)//2))
+        while a>100 or a == b or a == 0:
+            print("new try", a, b, max(self.num_range)//b)
+            a = b * random.choice(range(max(self.num_range)//b+1))
         return [f"{a} / {b}", a/b]
     
-        
+    def genRandom(self):
+        questList = [self.genAdd(), self.genSub(), self.genMult(), self.genDiv()]
+        return random.choice(questList)
