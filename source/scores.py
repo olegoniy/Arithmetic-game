@@ -27,9 +27,11 @@ class ScoreRecord():
         self._scores[player] = score
 
     def importScoreBoard(self, file:str="records.json"):
-        assert os.path.isfile(file), f"The file \"{file} \" wasn't found or doesn't exist!"
-        with open(file, "r") as scoreBoard:
-            self._scores = json.loads(scoreBoard.read())
+        try: 
+            with open(file, "r") as scoreBoard:
+                self._scores = json.loads(scoreBoard.read())
+        except:
+            print("File wasn't found or doesn't exist")
 
     def exportScoreBoard(self, file:str="records.json"):
         if not os.path.isfile(file):
