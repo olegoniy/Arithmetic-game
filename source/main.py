@@ -42,21 +42,27 @@ def setUp(cnst):
     
 
 if __name__ == "__main__":
-    cnst={
-        "STATS_FILE":"",
-        "MODE":"",
-        "PLAYER":""
-    }
-    setUp(cnst)
-    print(cnst)
-    if cnst["MODE"] == "Display":
-        table = SRec()
-        if not table.importScoreBoard(file=cnst["STATS_FILE"]):
-            table.exportScoreBoard(file=cnst["STATS_FILE"])
-        print(table)
-    else:
-        
-        game = Game(player=cnst["PLAYER"], path=cnst["STATS_FILE"])
-        game.start()
-    
-    input("\n Press ENTER to exit...\n")
+    while True:
+        try:
+            cnst={
+                "STATS_FILE":"",
+                "MODE":"",
+                "PLAYER":""
+            }
+            setUp(cnst)
+            print(cnst)
+            if cnst["MODE"] == "Display":
+                table = SRec()
+                if not table.importScoreBoard(file=cnst["STATS_FILE"]):
+                    table.exportScoreBoard(file=cnst["STATS_FILE"])
+                print(table)
+            else:
+                
+                game = Game(player=cnst["PLAYER"], path=cnst["STATS_FILE"])
+                game.start()
+            
+            input("\n Press ENTER to exit...\n")
+            break
+        except KeyboardInterrupt:
+            print("\nDon't be a fool! Nobody will let you out of here! Now you have to start again!\n")
+            continue
