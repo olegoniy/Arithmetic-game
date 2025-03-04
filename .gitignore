@@ -46,3 +46,6 @@ build/
 
 # Ignore generated documentation
 docs/_build/
+
+#Ignore json files in src 
+src/.json
