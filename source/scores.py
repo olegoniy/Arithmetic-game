@@ -30,9 +30,10 @@ class ScoreRecord():
         try: 
             with open(file, "r") as scoreBoard:
                 self._scores = json.loads(scoreBoard.read())
+            return True
         except:
-            print("File wasn't found or doesn't exist")
-
+            return False
+        
     def exportScoreBoard(self, file:str="records.json"):
         if not os.path.isfile(file):
             print(f"A new file with name {file} is being created!")

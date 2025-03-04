@@ -13,7 +13,7 @@ class Game():
             return end-start
         return wrapper
 
-    def __init__(self, player:str=None, path:str=None):
+    def __init__(self, player:str=None, path:str="records.json"):
         self._player = player
         self._path = path
 
@@ -51,24 +51,25 @@ class Game():
         self._current = cnt-2
 
 
-    def game(self):
+    def start(self):
         overall_time = self._quiz()
         if not self._player in self._records.getScores():
             self._records.addPlayer(self._player)
         if self._current == 0:
             print(f"\n{self._player}, well your score is 0, so... That's it\n")
-        if self._current > self._records.getScores()[self._player]:
-            self._records.changeScore(self._player, self._current)
-            self._records.exportScoreBoard()
-            print("You did have outdone yourself, mate! Frankly, you made it seem too easy...\n")
-            print(f"For this game you've gained {self._current} stunning points\n")
-            print(f"Your average time per question is: {round(overall_time/self._current, 2)} seconds\n")
-            print(f"You have to be pround of yourself, {self._player}\n")
         else:
-            print("Well, it isn't that you are stupid, but rather our world is too complicated\n")
-            print(f"Number of points you struggled for: {self._current}\n")
-            print(f"Your average time per question is:{round(overall_time/self._current, 2)}... Why in the world did it take you so long?!\n")
-            print(f"Don't worry, maybe next time you will study for the test, {self._player}")
+            if self._current > self._records.getScores()[self._player]:
+                self._records.changeScore(self._player, self._current)
+                self._records.exportScoreBoard()
+                print("You did have outdone yourself, mate! Frankly, you made it seem too easy...\n")
+                print(f"For this game you've gained {self._current} stunning points\n")
+                print(f"Your average time per question is: {round(overall_time/self._current, 2)} seconds\n")
+                print(f"You have to be pround of yourself, {self._player}\n")
+            else:
+                print("Well, it isn't that you are stupid, but rather our world is too complicated\n")
+                print(f"Number of points you struggled for: {self._current}\n")
+                print(f"Your average time per question is:{round(overall_time/self._current, 2)}... Why in the world did it take you so long?!\n")
+                print(f"Don't worry, maybe next time you will study for the test, {self._player}")
 
 
 
