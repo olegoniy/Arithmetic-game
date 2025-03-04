@@ -26,6 +26,8 @@ def setUp(cnst):
         cnst["STATS_FILE"] = input("Please enter a path to the stats file, you'd like to work with (if it doesn't exist, a new one will be created):")
     else:
         cnst["STATS_FILE"] = args["--File"]
+    if cnst["STATS_FILE"] == "":
+        cnst["STATS_FILE"] = "records.json"
     while not pv.is_valid_filepath(cnst["STATS_FILE"]):
         cnst["STATS_FILE"] = input("\nPath you entered isn't valid, please enter valid one:")
     if args["--records"] or args["-r"]:
@@ -54,7 +56,7 @@ if __name__ == "__main__":
         print(table)
     else:
         
-        game = Game(player=cnst["PLAYER"], path=["STATS_FILE"])
+        game = Game(player=cnst["PLAYER"], path=cnst["STATS_FILE"])
         game.start()
     
     input("\n Press ENTER to exit...\n")

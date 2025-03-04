@@ -60,7 +60,7 @@ class Game():
         else:
             if self._current > self._records.getScores()[self._player]:
                 self._records.changeScore(self._player, self._current)
-                self._records.exportScoreBoard()
+                self._records.exportScoreBoard(self._path)
                 print("You did have outdone yourself, mate! Frankly, you made it seem too easy...\n")
                 print(f"For this game you've gained {self._current} stunning points\n")
                 print(f"Your average time per question is: {round(overall_time/self._current, 2)} seconds\n")
